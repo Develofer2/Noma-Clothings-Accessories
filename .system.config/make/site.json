@@ -1,0 +1,10 @@
+{
+  "description": "Browse a curated fashion shop for clothing and accessories, explore products by category, and try demo cart and login features in a clean, animated storefront.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}
