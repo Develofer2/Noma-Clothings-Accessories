@@ -136,7 +136,10 @@ function Header({ view, go, count, bumpKey, openCart, openLogin }: { view: View;
           <button className="ulink" data-active={view === 'home'} onClick={() => go('home')}>Home</button>
           <button className="ulink" data-active={view === 'closet'} onClick={() => go('closet', 'all')}>Closet</button>
         </nav>
-        <button onClick={() => go('home')} className="font-serif text-3xl tracking-tight">noma<span className="text-mute">.</span></button>
+        <button onClick={() => go('home')} className="flex items-center gap-2" aria-label="Go to Noma home">
+          <img src="/logo.svg" alt="" className="size-8" />
+          <span className="font-serif text-3xl tracking-tight">noma<span className="text-mute">.</span></span>
+        </button>
         <div className="flex flex-1 items-center justify-end gap-5">
           <button onClick={openLogin} className="flex items-center gap-2 text-sm transition hover:opacity-60"><UserIcon /><span className="hidden sm:inline">Log in</span></button>
           <button onClick={openCart} className="relative flex items-center gap-2 text-sm transition hover:opacity-60" aria-label="Open cart">
@@ -238,7 +241,13 @@ function Footer() {
   return (
     <footer className="border-t border-line">
       <div className="mx-auto flex max-w-7xl flex-col justify-between gap-8 px-6 py-14 md:flex-row">
-        <div><p className="font-serif text-4xl">noma.</p><p className="mt-2 text-sm text-mute">A demo shop. Nothing here is for sale.</p></div>
+        <div>
+          <div className="flex items-center gap-3">
+            <img src="/logo.svg" alt="" className="size-10" />
+            <p className="font-serif text-4xl">noma.</p>
+          </div>
+          <p className="mt-2 text-sm text-mute">A demo shop. Nothing here is for sale.</p>
+        </div>
         <div className="flex gap-16 text-sm text-mute">
           <ul className="space-y-2"><li>Clothing</li><li>Bags</li><li>Accessories</li></ul>
           <ul className="space-y-2"><li>Shipping</li><li>Returns</li><li>Contact</li></ul>
@@ -444,6 +453,10 @@ export default function App() {
   const [loginOpen, setLoginOpen] = useState(false)
   const [quickP, setQuickP] = useState<Product | null>(null)
   const [toast, setToast] = useState<string | null>(null)
+
+  useEffect(() => {
+    document.title = view === 'closet' ? 'Noma — The Closet' : 'Noma — Considered Essentials'
+  }, [view])
 
   const go = (v: View, c: Category | 'all' = 'all') => { setView(v); setCat(c); window.scrollTo({ top: 0 }) }
 
